@@ -2,6 +2,7 @@ package com.danieljhv.tasktemple.service.impl;
 
 import com.danieljhv.tasktemple.dto.TaskDto;
 import com.danieljhv.tasktemple.entity.Task;
+import com.danieljhv.tasktemple.exception.ResourceNotFoundException;
 import com.danieljhv.tasktemple.repository.TaskRepository;
 import com.danieljhv.tasktemple.service.TaskService;
 import org.modelmapper.ModelMapper;
@@ -28,5 +29,13 @@ public class TaskServiceImpl implements TaskService {
         TaskDto savedTaskDto = modelMapper.map(savedTask, TaskDto.class);
 
         return savedTaskDto;
+    }
+
+    @Override
+    public TaskDto getTask(Long id) {
+        Task task = taskRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("There is not task with that id")
+        );
+        return modelMapper.map(task, TaskDto.class);
     }
 }

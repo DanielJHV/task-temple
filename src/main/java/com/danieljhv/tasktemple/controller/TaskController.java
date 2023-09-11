@@ -21,4 +21,10 @@ public class TaskController {
         TaskDto savedTask = taskService.addTask(taskDto);
         return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<TaskDto> getTask(@PathVariable("id") Long taskId) {
+        TaskDto taskDto = taskService.getTask(taskId);
+        return new ResponseEntity<>(taskDto, HttpStatus.OK);
+    }
 }
