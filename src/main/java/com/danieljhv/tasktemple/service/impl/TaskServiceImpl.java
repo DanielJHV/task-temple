@@ -62,7 +62,26 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteTask(Long id) {
-        Task task = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is not task with that id"));
+        Task task = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is not task with this id " + id));
         taskRepository.deleteById(id);
+    }
+
+    @Override
+    public TaskDto completeTask(Long id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(("There is no task with this id " + id)));
+
+        task.setCompleted(Boolean.TRUE);
+        Task updatedTask =  taskRepository.save(task);
+        return modelMapper.map(updatedTask, TaskDto.class);
+    }
+
+    @Override
+    public TaskDto inProgressTask(Long id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(("There is no task with this id " + id)));
+
+        task.setCompleted(Boolean.FALSE);
+
+        Task updatedTask = taskRepository.save(task);
+        return modelMapper.map(updatedTask, TaskDto.class);
     }
 }

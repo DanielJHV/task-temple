@@ -14,4 +14,8 @@ public interface TaskService {
     TaskDto updateTask(TaskDto taskDto, Long id);
 
     void deleteTask(Long id);
+
+    TaskDto completeTask(Long id);
+
+    TaskDto inProgressTask(Long id);
 }

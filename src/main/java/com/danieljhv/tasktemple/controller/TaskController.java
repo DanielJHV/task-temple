@@ -48,4 +48,16 @@ public class TaskController {
         taskService.deleteTask((taskId));
         return ResponseEntity.ok("Task deleted successfully");
     }
+
+    @PatchMapping("{id}/complete")
+    public ResponseEntity<TaskDto> completeTask(@PathVariable("id") Long taskId) {
+        TaskDto updatedTask = taskService.completeTask(taskId);
+        return ResponseEntity.ok(updatedTask);
+    }
+
+    @PatchMapping("{id}/in-progress")
+    public ResponseEntity<TaskDto> inProgressTask(@PathVariable("id") Long taskId) {
+        TaskDto updatedTask = taskService.inProgressTask(taskId);
+        return ResponseEntity.ok(updatedTask);
+    }
 }
