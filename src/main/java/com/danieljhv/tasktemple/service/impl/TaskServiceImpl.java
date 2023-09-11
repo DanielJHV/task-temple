@@ -4,34 +4,28 @@ import com.danieljhv.tasktemple.dto.TaskDto;
 import com.danieljhv.tasktemple.entity.Task;
 import com.danieljhv.tasktemple.repository.TaskRepository;
 import com.danieljhv.tasktemple.service.TaskService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
 
-    public TaskServiceImpl(TaskRepository taskRepository) {
+    private ModelMapper modelMapper;
+
+    public TaskServiceImpl(TaskRepository taskRepository, ModelMapper modelMapper) {
         this.taskRepository = taskRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public TaskDto addTask(TaskDto taskDto) {
 
-        // Covert dto to entity
-        Task task = new Task();
-        task.setTitle(taskDto.getTitle());
-        task.setDescription(taskDto.getDescription());
-        task.setCompleted(taskDto.isCompleted());
+        Task task = modelMapper.map(taskDto, Task.class);
 
-        // Task entity
         Task savedTask = taskRepository.save(task);
 
-        // Convert saved Task entity object into TaskDto object
-        TaskDto savedTaskDto = new TaskDto();
-        savedTaskDto.setId(savedTask.getId());
-        savedTaskDto.setTitle(savedTask.getTitle());
-        savedTaskDto.setDescription(savedTask.getDescription());
-        savedTaskDto.setCompleted(savedTask.isCompleted());
+        TaskDto savedTaskDto = modelMapper.map(savedTask, TaskDto.class);
 
         return savedTaskDto;
     }
