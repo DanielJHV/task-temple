@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { addTask } from "../services/TaskService";
+import { useEffect, useState } from "react";
+import { addTask, getTask, updateTask } from "../services/TaskService";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Task() {
@@ -9,6 +9,20 @@ function Task() {
 
   const navigate = useNavigate();
   const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      getTask(id)
+        .then((response) => {
+          setTitle(response.data.title);
+          setDescription(response.data.description);
+          setCompleted(response.data.completed);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, []);
 
   function pageTitle() {
     if (id) {
@@ -24,13 +38,23 @@ function Task() {
     const task = { title, description, completed };
     console.log(task);
 
-    addTask(task)
-      .then((response) => {
-        navigate("/tasks");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (id) {
+      updateTask(id, task)
+        .then((response) => {
+          navigate("/tasks");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      addTask(task)
+        .then((response) => {
+          navigate("/tasks");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }
 
   return (

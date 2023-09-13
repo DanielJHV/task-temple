@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllTasks } from "../services/TaskService";
+import { deleteTask, getAllTasks } from "../services/TaskService";
 import { useNavigate } from "react-router-dom";
 
 function TasksList() {
@@ -27,6 +27,16 @@ function TasksList() {
 
   function updateTask(id) {
     navigate(`/update-task/${id}`);
+  }
+
+  function removeTask(id) {
+    deleteTask(id)
+      .then((response) => {
+        listTasks();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (
@@ -59,7 +69,7 @@ function TasksList() {
                 <img src="/src/assets/refresh-btn.svg" alt="Restart button" />
               </button>
 
-              <button className="task__btn">
+              <button className="task__btn" onClick={() => removeTask(task.id)}>
                 <img src="/src/assets/delete-btn.svg" alt="Delete button" />
               </button>
               <button className="task__btn" onClick={() => updateTask(task.id)}>
