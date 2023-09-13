@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAllTasks } from "../services/TaskService";
+import { useNavigate } from "react-router-dom";
 
 function TasksList() {
-  //   const date = new Date();
-  //   const now = 5;
+  const [tasks, setTasks] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     listTasks();
@@ -19,21 +21,18 @@ function TasksList() {
       });
   }
 
-  const [tasks, setTasks] = useState([]);
+  function addNewTask() {
+    navigate("/add-task");
+  }
 
   return (
     <div className="tasks-list">
       <h1 className="heading-primary">Tasks</h1>
-      {/* <p className="greeting">
-        {now >= 5 && now < 12
-          ? "Good morning!"
-          : now > 12 && now < 18
-          ? "Good afternoon!"
-          : "Good evening!"}
-      </p> */}
 
       <div className="btn-add-box">
-        <button className="btn-add">Add task</button>
+        <button className="btn-add" onClick={addNewTask}>
+          Add task
+        </button>
       </div>
       {tasks.map((task) => {
         return (
