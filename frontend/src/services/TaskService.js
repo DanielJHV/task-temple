@@ -12,3 +12,9 @@ export const updateTask = (id, task) =>
   axios.put(BASE_REST_API_URL + "/" + id, task);
 
 export const deleteTask = (id) => axios.delete(BASE_REST_API_URL + "/" + id);
+
+export const completeTask = (id) =>
+  axios.patch(BASE_REST_API_URL + "/" + id + "/complete");
+
+export const refreshTask = (id) =>
+  axios.patch(BASE_REST_API_URL + "/" + id + "/in-progress");

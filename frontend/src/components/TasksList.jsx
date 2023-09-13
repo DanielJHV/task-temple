@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { deleteTask, getAllTasks } from "../services/TaskService";
+import {
+  completeTask,
+  deleteTask,
+  getAllTasks,
+  refreshTask,
+} from "../services/TaskService";
 import { useNavigate } from "react-router-dom";
 
 function TasksList() {
@@ -39,6 +44,28 @@ function TasksList() {
       });
   }
 
+  function markAsCompleted(id) {
+    completeTask(id)
+      .then((response) => {
+        listTasks();
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  function markAsPending(id) {
+    refreshTask(id)
+      .then((response) => {
+        listTasks();
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <div className="tasks-list">
       <h1 className="heading-primary">Tasks</h1>
@@ -65,7 +92,10 @@ function TasksList() {
             </div>
 
             <div className="task-options">
-              <button className="task__btn">
+              <button
+                className="task__btn"
+                onClick={() => markAsPending(task.id)}
+              >
                 <img src="/src/assets/refresh-btn.svg" alt="Restart button" />
               </button>
 
@@ -75,7 +105,10 @@ function TasksList() {
               <button className="task__btn" onClick={() => updateTask(task.id)}>
                 <img src="/src/assets/edit-btn.svg" alt="Edit button" />
               </button>
-              <button className="task__btn">
+              <button
+                className="task__btn"
+                onClick={() => markAsCompleted(task.id)}
+              >
                 <img src="/src/assets/complete-btn.svg" alt="Complete button" />
               </button>
             </div>

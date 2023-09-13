@@ -92,7 +92,7 @@ function Task() {
           value={completed}
           onChange={(e) => setCompleted(e.target.value)}
         >
-          <option value="false">In progress</option>
+          <option value="false">Pending</option>
           <option value="true">Completed</option>
         </select>
       </div>
