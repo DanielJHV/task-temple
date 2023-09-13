@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addTask } from "../services/TaskService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Task() {
   const [title, setTitle] = useState("");
@@ -8,8 +8,8 @@ function Task() {
   const [completed, setCompleted] = useState("");
 
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  let id = 4;
   function pageTitle() {
     if (id) {
       return <h2 className="heading-secondary">Edit task</h2>;

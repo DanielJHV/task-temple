@@ -25,6 +25,10 @@ function TasksList() {
     navigate("/add-task");
   }
 
+  function updateTask(id) {
+    navigate(`/update-task/${id}`);
+  }
+
   return (
     <div className="tasks-list">
       <h1 className="heading-primary">Tasks</h1>
@@ -36,7 +40,7 @@ function TasksList() {
       </div>
       {tasks.map((task) => {
         return (
-          <div className="task">
+          <div className="task" key={task.id}>
             <span
               className={`task-status ${
                 task.completed ? "task-completed" : "task-pending"
@@ -58,7 +62,7 @@ function TasksList() {
               <button className="task__btn">
                 <img src="/src/assets/delete-btn.svg" alt="Delete button" />
               </button>
-              <button className="task__btn">
+              <button className="task__btn" onClick={() => updateTask(task.id)}>
                 <img src="/src/assets/edit-btn.svg" alt="Edit button" />
               </button>
               <button className="task__btn">
