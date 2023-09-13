@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { addTask } from "../services/TaskService";
+import { useNavigate } from "react-router-dom";
 
 function Task() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [completed, setCompleted] = useState("");
+
+  const navigate = useNavigate();
 
   let id = 4;
   function pageTitle() {
@@ -15,6 +20,17 @@ function Task() {
 
   function saveTask(e) {
     e.preventDefault();
+
+    const task = { title, description, completed };
+    console.log(task);
+
+    addTask(task)
+      .then((response) => {
+        navigate("/tasks");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (
@@ -42,6 +58,19 @@ function Task() {
           onChange={(e) => setDescription(e.target.value)}
           autoComplete="off"
         ></input>
+      </div>
+
+      <div className="form-section">
+        <label>Status</label>
+
+        <select
+          className="select"
+          value={completed}
+          onChange={(e) => setCompleted(e.target.value)}
+        >
+          <option value="false">In progress</option>
+          <option value="true">Completed</option>
+        </select>
       </div>
 
       <button className="btn-save" onClick={saveTask}>
