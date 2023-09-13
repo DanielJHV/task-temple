@@ -27,3 +27,101 @@
 .logo {
   height: 100%;
 }
+
+/* Tasks list */
+.greeting {
+  font-size: 1.6rem;
+}
+
+.heading-primary {
+  font-size: 2.4rem;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.tasks-list {
+  margin: auto;
+  margin-top: 4rem;
+  width: 80rem;
+  min-height: 50rem;
+  background-color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn-add-box {
+  /* background-color: #000; */
+  width: 92%;
+  margin: auto;
+  margin-bottom: 1.6rem;
+}
+
+.btn-add {
+  display: flex;
+  margin-left: auto;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  color: #eee;
+  background-color: #0c4a60;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 95%;
+  padding: 2rem;
+  border-top: 1px solid #ccc;
+}
+
+.task-status {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.8rem 1.2rem;
+  border-radius: 100px;
+  margin-right: 2.4rem;
+}
+
+.task-completed {
+  background-color: #0f9818;
+  color: #fff;
+}
+
+.task-pending {
+  background-color: #b51616;
+  color: #fff;
+}
+
+.task-text {
+  margin-right: auto;
+}
+
+.task__title {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.task__description {
+  font-size: 1.2rem;
+}
+
+.task-options {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.task-options img {
+  height: 2rem;
+}
+
+.task__btn {
+  display: flex;
+  justify-content: center;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
