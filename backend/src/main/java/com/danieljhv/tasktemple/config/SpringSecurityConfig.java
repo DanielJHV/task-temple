@@ -17,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
@@ -30,6 +31,7 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable();
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
 //                    auth.requestMatchers(antMatcher(HttpMethod.POST, "/api/**")).hasRole("ADMIN");
@@ -38,7 +40,7 @@ public class SpringSecurityConfig {
 //                    auth.requestMatchers(antMatcher(HttpMethod.GET, "/api/**")).hasAnyRole("ADMIN", "USER");
 //                    auth.requestMatchers(antMatcher(HttpMethod.PATCH, "/api/**")).hasAnyRole("ADMIN", "USER");
                     auth.anyRequest().authenticated();
-                }).httpBasic(Customizer.withDefaults());
+                }).httpBasic(withDefaults());
         return http.build();
     }
 
