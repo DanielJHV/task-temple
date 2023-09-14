@@ -48,14 +48,6 @@ public class SpringSecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails test = User.builder().username("test").password(passwordEncoder().encode("password")).roles("USER").build();
-//
-//        UserDetails admin = User.builder().username("admin").password(passwordEncoder().encode("admin")).roles("ADMIN").build();
-//
-//        return new InMemoryUserDetailsManager(test, admin);
-//    }
 
     public SpringSecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
