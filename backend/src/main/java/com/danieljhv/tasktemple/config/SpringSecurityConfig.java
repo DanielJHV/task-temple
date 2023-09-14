@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
+@EnableMethodSecurity
 public class SpringSecurityConfig {
 
     @Bean
@@ -30,11 +32,12 @@ public class SpringSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(antMatcher(HttpMethod.POST, "/api/**")).hasRole("ADMIN");
-                    auth.requestMatchers(antMatcher(HttpMethod.PUT, "/api/**")).hasRole("ADMIN");
-                    auth.requestMatchers(antMatcher(HttpMethod.DELETE, "/api/**")).hasRole("ADMIN");
-                    auth.requestMatchers(antMatcher(HttpMethod.GET, "/api/**")).hasAnyRole("ADMIN", "USER");
-                    auth.requestMatchers(antMatcher(HttpMethod.PATCH, "/api/**")).hasAnyRole("ADMIN", "USER");
+//                    auth.requestMatchers(antMatcher(HttpMethod.POST, "/api/**")).hasRole("ADMIN");
+//                    auth.requestMatchers(antMatcher(HttpMethod.PUT, "/api/**")).hasRole("ADMIN");
+//                    auth.requestMatchers(antMatcher(HttpMethod.DELETE, "/api/**")).hasRole("ADMIN");
+//                    auth.requestMatchers(antMatcher(HttpMethod.GET, "/api/**")).hasAnyRole("ADMIN", "USER");
+//                    auth.requestMatchers(antMatcher(HttpMethod.PATCH, "/api/**")).hasAnyRole("ADMIN", "USER");
+                    auth.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
         return http.build();
     }
