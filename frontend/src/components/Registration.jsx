@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { registerAPICall } from "../services/AuthService";
 
 function Registration() {
   const [name, setName] = useState("");
@@ -11,7 +12,13 @@ function Registration() {
 
     const register = { name, username, email, password };
 
-    console.log(register);
+    registerAPICall(register)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (
