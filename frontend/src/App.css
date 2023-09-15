@@ -17,6 +17,28 @@
   text-decoration: none;
 }
 
+.nav__list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0;
+  list-style-type: none;
+}
+
+.nav__link {
+  position: relative;
+  padding: 0 0.6rem;
+  color: #d9d9d9;
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.nav__link:hover {
+  color: #eee;
+}
+
 .logo-box {
   display: flex;
   justify-content: center;
@@ -188,4 +210,116 @@
   cursor: pointer;
   border-radius: 9px;
   font-weight: 700;
+}
+
+.registration {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25);
+  width: 80rem;
+}
+
+.registration__container {
+  padding: 2rem 4rem;
+  width: 42rem;
+  height: 42rem;
+  background-color: #fff;
+}
+
+.registration__title {
+  display: block;
+  font-size: 2.4rem;
+  letter-spacing: -1px;
+  margin-bottom: 1.6rem;
+}
+
+.registration__form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* .registration__container .form-section {
+  margin-bottom: 1.4rem;
+} */
+
+.registration__label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.registration__input {
+  font-size: 1.3rem;
+  padding: 1rem 1.2rem;
+  background-color: #f1f1f1;
+  border-radius: 100px;
+  border: none;
+}
+
+.registration__input::placeholder {
+  color: #9d9d9c;
+}
+
+.sign-btn {
+  font-size: 1.3rem;
+  padding: 1rem;
+  border: none;
+  background: #ef6c33;
+  background: linear-gradient(
+    135deg,
+    rgba(239, 108, 51, 1) 46%,
+    rgba(239, 91, 51, 1) 69%
+  );
+  color: #eee;
+  border-radius: 100px;
+  margin-top: 1.4rem;
+}
+
+.registration__sign {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  color: #eee;
+  width: 42rem;
+  height: 42rem;
+  background: #ef6c33;
+  background: linear-gradient(
+    135deg,
+    rgba(239, 108, 51, 1) 46%,
+    rgba(239, 91, 51, 1) 69%
+  );
+}
+
+.registration__welcome {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.registration__account-text {
+  font-size: 1.8rem;
+  letter-spacing: -1px;
+  font-weight: 100;
+}
+
+.registration__sign-btn {
+  padding: 0.8rem 2.8rem;
+  font-size: 1.3rem;
+  border: 1px solid #eee;
+  background-color: transparent;
+  letter-spacing: -0.5px;
+  border-radius: 100px;
+  color: #eee;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.registration__sign-btn:hover {
+  background-color: #eee;
+  color: #ef6c33;
 }

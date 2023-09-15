@@ -1,3 +1,5 @@
+import Nav from "./Nav";
+
 function Header() {
   return (
     <header className="header">
@@ -6,7 +8,7 @@ function Header() {
           <img className="logo" src="src/assets/logo.png" />
         </div>
       </a>
-      {/* <Nav /> */}
+      <Nav />
     </header>
   );
 }
