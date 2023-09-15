@@ -228,11 +228,23 @@
   background-color: #fff;
 }
 
-.registration__title {
+.login__container {
+  padding: 3rem 4rem;
+  width: 42rem;
+  height: 42rem;
+  background-color: #fff;
+}
+
+.registration__title,
+.login__title {
   display: block;
   font-size: 2.4rem;
   letter-spacing: -1px;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.8rem;
+}
+
+.login__title {
+  margin-bottom: 6rem;
 }
 
 .registration__form {
@@ -275,7 +287,8 @@
   );
   color: #eee;
   border-radius: 100px;
-  margin-top: 1.4rem;
+  margin-top: 0.4rem;
+  cursor: pointer;
 }
 
 .registration__sign {
@@ -317,6 +330,7 @@
   color: #eee;
   cursor: pointer;
   transition: all 0.4s;
+  text-decoration: none;
 }
 
 .registration__sign-btn:hover {

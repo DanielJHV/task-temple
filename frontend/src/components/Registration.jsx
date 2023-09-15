@@ -77,10 +77,10 @@ function Registration() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></input>
-            <button className="sign-btn" onClick={(e) => handleRegistration(e)}>
-              Sign Up
-            </button>
           </div>
+          <button className="sign-btn" onClick={(e) => handleRegistration(e)}>
+            Sign Up
+          </button>
         </form>
       </div>
       <div className="registration__sign">
@@ -88,7 +88,9 @@ function Registration() {
         <span className="registration__account-text">
           Already have an account?
         </span>
-        <button className="registration__sign-btn">Sign In</button>
+        <a href="/login" className="registration__sign-btn">
+          Sign In
+        </a>
       </div>
     </div>
   );
