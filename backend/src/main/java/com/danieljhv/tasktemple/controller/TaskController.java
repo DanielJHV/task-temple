@@ -1,9 +1,7 @@
 package com.danieljhv.tasktemple.controller;
 
 import com.danieljhv.tasktemple.dto.TaskDto;
-import com.danieljhv.tasktemple.entity.Task;
 import com.danieljhv.tasktemple.service.TaskService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,14 +26,14 @@ public class TaskController {
         return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ROLE_USER')")
     @GetMapping("{id}")
     public ResponseEntity<TaskDto> getTask(@PathVariable("id") Long taskId) {
         TaskDto taskDto = taskService.getTask(taskId);
         return new ResponseEntity<>(taskDto, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ROLE_USER')")
     @GetMapping
     public ResponseEntity<List<TaskDto>> getAllTasks() {
         List<TaskDto> tasks = taskService.getAllTasks();

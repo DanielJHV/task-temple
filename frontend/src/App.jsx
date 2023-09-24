@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<TasksList />}></Route>
+          <Route path="/" element={<Login />}></Route>
           <Route path="/tasks" element={<TasksList />}></Route>
           <Route path="/add-task" element={<Task />}></Route>
           <Route path="/update-task/:id" element={<Task />}></Route>

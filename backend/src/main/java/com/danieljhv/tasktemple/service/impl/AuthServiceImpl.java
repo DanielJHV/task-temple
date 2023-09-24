@@ -8,6 +8,7 @@ import com.danieljhv.tasktemple.exception.TaskAPIException;
 import com.danieljhv.tasktemple.repository.RoleRepository;
 import com.danieljhv.tasktemple.repository.UserRepository;
 import com.danieljhv.tasktemple.service.AuthService;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,18 +26,16 @@ public class AuthServiceImpl implements AuthService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
+
     @Override
     public String register(RegisterDto registerDto) {
-        // Check if the username exists
 
-        if (userRepository.existsByUsername(registerDto.getUsername())) {
-            throw new TaskAPIException(HttpStatus.BAD_REQUEST, "Username already exists");
+        if(userRepository.existsByUsername(registerDto.getUsername())){
+            throw new TaskAPIException(HttpStatus.BAD_REQUEST, "This username is already in usage");
         }
 
-        // Check if the email exists
-
-        if (userRepository.existsByEmail(registerDto.getEmail())) {
-            throw new TaskAPIException(HttpStatus.BAD_REQUEST, "Email already exists");
+        if(userRepository.existsByEmail(registerDto.getEmail())){
+            throw new TaskAPIException(HttpStatus.BAD_REQUEST, "This email is already in usage");
         }
 
         User user = new User();
@@ -50,20 +49,22 @@ public class AuthServiceImpl implements AuthService {
         roles.add(userRole);
 
         user.setRoles(roles);
+
         userRepository.save(user);
 
-        return "User registered successfully!";
+        return "User registered successfully!.";
     }
 
     @Override
     public String login(LoginDto loginDto) {
+
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(),
                 loginDto.getPassword()
         ));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "User logged-in successfully";
+        return "User logged-in successfully!.";
     }
 
     public AuthServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {

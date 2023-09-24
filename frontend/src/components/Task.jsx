@@ -52,7 +52,7 @@ function Task() {
           navigate("/tasks");
         })
         .catch((error) => {
-          console.error(error);
+          console.error(error.response.data);
         });
     }
   }

@@ -14,6 +14,7 @@ function Login() {
     loginAPICall(username, password)
       .then((response) => {
         console.log(response);
+
         navigate("/tasks");
       })
       .catch((error) => {

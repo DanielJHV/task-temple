@@ -1,7 +1,9 @@
 package com.danieljhv.tasktemple.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ManyToAny;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,9 +21,11 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Set<Role> roles;
-
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     public User() {}
 

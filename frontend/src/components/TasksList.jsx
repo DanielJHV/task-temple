@@ -96,20 +96,23 @@ function TasksList() {
                 className="task__btn"
                 onClick={() => markAsPending(task.id)}
               >
-                <img src="/src/assets/refresh-btn.svg" alt="Restart button" />
+                <img src="images/refresh-btn.svg" alt="Restart button" />
               </button>
 
               <button className="task__btn" onClick={() => removeTask(task.id)}>
-                <img src="/src/assets/delete-btn.svg" alt="Delete button" />
+                <img src="images/delete-btn.svg" alt="Delete button" />
               </button>
               <button className="task__btn" onClick={() => updateTask(task.id)}>
-                <img src="/src/assets/edit-btn.svg" alt="Edit button" />
+                <img src="images/assets/edit-btn.svg" alt="Edit button" />
               </button>
               <button
                 className="task__btn"
                 onClick={() => markAsCompleted(task.id)}
               >
-                <img src="/src/assets/complete-btn.svg" alt="Complete button" />
+                <img
+                  src="images/assets/complete-btn.svg"
+                  alt="Complete button"
+                />
               </button>
             </div>
           </div>
